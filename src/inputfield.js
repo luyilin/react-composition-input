@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import omit from 'omit.js'
 
 // detect whether it is chrome
 const isChrome = !!window.chrome && !!window.chrome.webstore
@@ -74,14 +73,11 @@ class InputField extends Component {
     }
 
     render() {
-        const otherProps = omit(this.props, [
-            'defaultValue',
-            'onInputChange'
-        ]);
+        const { onInputChange, ...restProps } = this.props
         return (
             <input
                 type='text'
-                {...otherProps}
+                {...restProps}
                 ref={(input)=>{this.input = input}}
                 value={this.state.value}
                 onChange={this.handleInputChange}
